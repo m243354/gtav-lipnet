@@ -1,6 +1,6 @@
 """ Bark Program
-BarkAI 
-
+BarkAI is a GPT style text to speech AI.
+We take our output from the LipNet code and produce speech through BarkAI.
 """
 from bark import SAMPLE_RATE, generate_audio, preload_models
 from IPython.display import Audio

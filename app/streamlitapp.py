@@ -45,7 +45,7 @@ vidFile = 'video1.mp4'
 col1, col2 = st.columns(2)
 with col1:     
     st.info('INPUT VIDEO BELOW')
-    #file_path = os.path.join('..','data','s1', selected_video)
+    #file_path = os.path.join('..','data','s1', selected_video) TODO make live camera frames
     #os.system(f'ffmpeg -i {file_path} -vcodec libx264 test_video.mp4 -y')
 
     # Video display
@@ -62,6 +62,7 @@ with col2:
     
     voice = st.selectbox("Choose AI Voice model:", voiceType)
     st.text("Decoded text will be outputted here:")
+    #TODO fix AI model. Needs alignments from a test video to be generatead then saved into a corresponding folder.
     #video, annotations = load_data(tf.convert_to_tensor(vidFile))     
     #model = load_model()
     #yhat = model.predict(tf.expand_dims(video, axis=0))
