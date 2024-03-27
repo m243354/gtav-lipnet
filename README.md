@@ -4,10 +4,14 @@ Welcome to the repository for Give Them A Voice
 
 ## Getting started
 Dependencies
-- ```pip install -r dependencies.txt```
+- `pip install -r dependencies.txt`
+- After pip installing all of the requried python libraries, you must install the barkAI package. Navigate to any desired directory and then run these lines:
+```
+git clone https://github.com/suno-ai/bark 
+cd bark && pip install . 
+```
 - Your device must have a camera.
 - Minimum system requirements: Linux, python3, able to install all packages
-- PPloan
 
 ### Running the project
 ```streamlit run gtav.py```

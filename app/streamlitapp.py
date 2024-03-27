@@ -7,6 +7,7 @@ import tensorflow as tf
 from utils import load_data, num_to_char
 from modelutil import load_model
 
+#broken import -_-
 from barkPrg import audio_process
 
 #Make the streamlit app read an input video from the user
@@ -41,7 +42,7 @@ voiceType = ("v2/en_speaker_0",
 st.set_page_config(layout='wide')
 
 st.title('Give Them A Voice') 
-st.link_button("GTAV Repository", "https://gitlab.usna.edu/m243354/gtav-lipnet")
+st.link_button("GTAV Github Repository", "https://github.com/m243354/gtav-lipnet")
 # Generate two columns 
 vidFile = 'video1.mp4'
 col1, col2 = st.columns(2)

@@ -17,8 +17,7 @@ def audio_process(word_string, voiceType):
 
 def main():
   #type of voice in barkAI
-  voiceType = 
-    ["v2/en_speaker_0",
+  voiceType = ("v2/en_speaker_0",
     "v2/en_speaker_1",
     "v2/en_speaker_2",
     "v2/en_speaker_3",
@@ -27,7 +26,7 @@ def main():
     "v2/en_speaker_6",
     "v2/en_speaker_7",
     "v2/en_speaker_8",
-    "v2/en_speaker_9"]
+    "v2/en_speaker_9")
 
   textwords = ["","",""] #input array
   flag = 0
