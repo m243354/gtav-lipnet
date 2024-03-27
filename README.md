@@ -7,7 +7,7 @@ Dependencies
 - ```pip install -r dependencies.txt```
 - Your device must have a camera.
 - Minimum system requirements: Linux, python3, able to install all packages
-- 
+- PPloan
 
 ### Running the project
 ```streamlit run gtav.py```

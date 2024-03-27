@@ -7,6 +7,8 @@ import tensorflow as tf
 from utils import load_data, num_to_char
 from modelutil import load_model
 
+from barkPrg import audio_process
+
 #Make the streamlit app read an input video from the user
 #take input video and run model on it
 #after model is complete, send output to barkAi prg
@@ -52,7 +54,7 @@ with col1:
     video = open(vidFile, 'rb') 
     video_bytes = video.read() 
     st.video(video_bytes)
-    st.image("goat.png", caption="Throat Goats", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+    st.image("usna.png")
 
 with col2:
     st.button("START", on_click=startVid())
@@ -73,4 +75,6 @@ with col2:
     #converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
     #st.text(converted_prediction)
     #converted prediction is text to be sent to the barkAI applicatio
-    st.image("usna.png")
+    #audio_process(converted_prediction, voice)
+    st.image("goat.png", caption="Throat Goats", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+    
