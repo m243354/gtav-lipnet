@@ -2,17 +2,19 @@
 import streamlit as st
 import os 
 import imageio 
-
 import tensorflow as tf 
 from utils import load_data, num_to_char
 from modelutil import load_model
-
 #broken import -_-
 from barkPrg import audio_process
 
 #Make the streamlit app read an input video from the user
 #take input video and run model on it
 #after model is complete, send output to barkAi prg
+#bark program optimizations for low RAM 
+#os.environ["SUNO_OFFLOAD_CPU"] = "True"
+os.environ["SUNO_USE_SMALL_MODELS"] = "True"
+
 
 def startVid():
     #toggle camera on
