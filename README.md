@@ -20,3 +20,6 @@ OR RUN THESE LINES:
 After running this in ubuntu, you will have an IP address supplied to you. Go to this address and you will be able to interact with the project. At its base level, the project will work with a pre-trained voice model. To get the project to work with your own video input, record a video of max 10 seconds in length and place it in the `gtav-lipnet/data/myVideos` folder. From there, refresh the app and select the filename in the dropdown and see the model produce a lipreading approximation of your video! 
 - TODO: Make a script to grab the IP and send the browser to it automatically.
 - TODO: Windows functionality stuff. All code is in Ubuntu rn.
+- TODO: Add CTC Forced alignment: https://pytorch.org/audio/main/tutorials/ctc_forced_alignment_api_tutorial.html
+https://distill.pub/2017/ctc/
+
