@@ -5,15 +5,16 @@ import imageio
 import tensorflow as tf 
 from utils import load_data, num_to_char
 from modelutil import load_model
+
 #broken import -_-
-from barkPrg import audio_process
+#from barkPrg import audio_process
 
 #Make the streamlit app read an input video from the user
 #take input video and run model on it
 #after model is complete, send output to barkAi prg
 #bark program optimizations for low RAM 
 #os.environ["SUNO_OFFLOAD_CPU"] = "True"
-os.environ["SUNO_USE_SMALL_MODELS"] = "True"
+#os.environ["SUNO_USE_SMALL_MODELS"] = "True"
 
 
 def startVid():
@@ -68,15 +69,15 @@ with col2:
     voice = st.selectbox("Choose AI Voice model:", voiceType)
     st.text("Decoded text will be outputted here:")
     #TODO fix AI model. Needs alignments from a test video to be generatead then saved into a corresponding folder.
-    #video, annotations = load_data(tf.convert_to_tensor(vidFile))     
-    #model = load_model()
-    #yhat = model.predict(tf.expand_dims(video, axis=0))
-    #decoder = tf.keras.backend.ctc_decode(yhat, [75], greedy=True)[0][0].numpy()
-    #st.text(decoder)
+    video, annotations = load_data(tf.convert_to_tensor(vidFile))     
+    model = load_model()
+    yhat = model.predict(tf.expand_dims(video, axis=0))
+    decoder = tf.keras.backend.ctc_decode(yhat, [75], greedy=True)[0][0].numpy()
+    st.text(decoder)
 
     # Convert prediction to text
-    #converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
-    #st.text(converted_prediction)
+    converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
+    st.text(converted_prediction)
     #converted prediction is text to be sent to the barkAI applicatio
     #audio_process(converted_prediction, voice)
     st.image("goat.png", caption="Throat Goats", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
