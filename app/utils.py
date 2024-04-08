@@ -3,6 +3,8 @@ from typing import List
 import cv2
 import os 
 
+#File of helper functions for the streamlit application
+
 vocab = [x for x in "abcdefghijklmnopqrstuvwxyz'?!123456789 "]
 char_to_num = tf.keras.layers.StringLookup(vocabulary=vocab, oov_token="")
 # Mapping integers back to original characters

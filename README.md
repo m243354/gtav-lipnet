@@ -6,7 +6,8 @@ Welcome to the repository for Give Them A Voice
 Dependencies
 - Your device must have a camera.
 - Minimum system requirements: Ubuntu 20.04, python3, able to install all packages
-- `pip install -r dependencies.txt`
+- Before starting, run `sudo apt-get upgrade` to be sure your Ubuntu installation is up to date.
+- Next, run `pip install -r dependencies.txt`
 - After pip installing all of the requried python libraries, you must install the barkAI package, ffpmeg, and PythonVideoConverter. 
 ### Installing BarkAI
 Navigate to any desired directory and then run these lines:
@@ -29,8 +30,9 @@ To run the script on a video you wish to convert, type python3 vidConv.py. The p
 ## Running the project
 ```streamlit run gtav.py```
 After running this in ubuntu, you will have an IP address supplied to you. Go to this address and you will be able to interact with the project. At its base level, the project will work with a pre-trained voice model. To get the project to work with your own video input, record a video of max 10 seconds in length and place it in the `gtav-lipnet/data/myVideos` folder. From there, refresh the app and select the filename in the dropdown and see the model produce a lipreading approximation of your video! 
+# Todo(remove before cappy day)
 - TODO: Make a script to grab the IP and send the browser to it automatically.
 - TODO: Windows functionality stuff. All code is in Ubuntu rn.
-- TODO: Add CTC Forced alignment: https://pytorch.org/audio/main/tutorials/ctc_forced_alignment_api_tutorial.html
-https://distill.pub/2017/ctc/
-
+- TODO: Make website look nicer
+- TODO: Ensure smooth file conventions so the user can navigate nicely. Put READMEs in each file folder to explain its purpose
+- TODO: Write comments in ALL code for ALL functions and ALL features

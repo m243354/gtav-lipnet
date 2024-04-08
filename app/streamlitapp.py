@@ -60,7 +60,7 @@ with col1:
     video = open(vidFile, 'rb') 
     video_bytes = video.read() 
     st.video(video_bytes)
-    st.image("usna.png")
+    #st.image("usna.png")
 
 with col2:
     #st.button("START", on_click=startVid())
@@ -69,16 +69,14 @@ with col2:
     #voice = st.selectbox("Choose AI Voice model:", voiceType)
     st.text("Decoded text will be outputted here:")
     
-    #TODO fix AI model.
     video = load_data_noAlign(tf.convert_to_tensor(vidFile))
     yhat = model.predict(tf.expand_dims(video, axis=0))
     decoder = tf.keras.backend.ctc_decode(yhat, [75], greedy=True)[0][0].numpy()
-    #st.text(decoder)
 
     # Convert prediction to text
     converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
     st.text(converted_prediction)
-    #converted prediction is text to be sent to the barkAI applicatio
+    #converted prediction is text to be sent to the barkAI application. Uncomment this line below to hear the results of the prediction in voice mode
     #audio_process(converted_prediction, voice)
     st.image("goat.png", caption="Throat Goats", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
     
