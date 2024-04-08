@@ -10,6 +10,7 @@ num_to_char = tf.keras.layers.StringLookup(
     vocabulary=char_to_num.get_vocabulary(), oov_token="", invert=True
 )
 
+
 def load_video(path:str) -> List[float]: 
     #Take an input video and return a list of tensor data from the video
     cap = cv2.VideoCapture(path)
@@ -35,18 +36,26 @@ def load_alignments(path:str) -> List[str]:
             tokens = [*tokens,' ',line[2]]
     return char_to_num(tf.reshape(tf.strings.unicode_split(tokens, input_encoding='UTF-8'), (-1)))[1:]
 
-def load_data(path: str): 
+def load_data(path:str): 
     #Takes in a video path to the alingments folder and returns the video frames and alignments for the neural network
     path = bytes.decode(path.numpy())
     file_name = path.split('/')[-1].split('.')[0]
-    print('HERE')
-    print(file_name)
     # File name splitting for windows
     #file_name = path.split('\\')[-1].split('.')[0]
     video_path = os.path.join('..','data','s1',f'{file_name}.mpg')
     alignment_path = os.path.join('..','data','alignments','s1',f'{file_name}.align')
-    print(alignment_path)
     frames = load_video(video_path) 
     alignments = load_alignments(alignment_path)
     
     return frames, alignments
+
+def load_data_noAlign(path:str): 
+    #Takes in a video path and loads it for no alingments
+    path = bytes.decode(path.numpy())
+    file_name = path.split('/')[-1].split('.')[0]
+    # File name splitting for windows
+    #file_name = path.split('\\')[-1].split('.')[0]
+    video_path = os.path.join('..','data','s1',f'{file_name}.mpg')
+    frames = load_video(video_path) 
+    
+    return frames

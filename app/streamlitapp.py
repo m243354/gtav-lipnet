@@ -3,7 +3,7 @@ import streamlit as st
 import os 
 import imageio 
 import tensorflow as tf 
-from utils import load_data, num_to_char
+from utils import load_data, num_to_char, load_data_noAlign
 from modelutil import load_model
 
 #broken import -_-
@@ -15,6 +15,7 @@ from modelutil import load_model
 #bark program optimizations for low RAM 
 #os.environ["SUNO_OFFLOAD_CPU"] = "True"
 #os.environ["SUNO_USE_SMALL_MODELS"] = "True"
+model = load_model()
 
 
 def startVid():
@@ -48,6 +49,7 @@ st.title('Give Them A Voice')
 st.link_button("GTAV Github Repository", "https://github.com/m243354/gtav-lipnet")
 # Generate two columns 
 vidFile = 'video1.mp4'
+vidFile = 'bbal8p.mpg'
 col1, col2 = st.columns(2)
 with col1:     
     st.info('INPUT VIDEO BELOW')
@@ -61,19 +63,17 @@ with col1:
     st.image("usna.png")
 
 with col2:
-    st.button("START", on_click=startVid())
-    st.button("STOP", on_click=stopVid())
-    st.button("PLAY", on_click=playButton()) 
-    #st.info('This is all the machine learning model sees when making a prediction')
-    
-    voice = st.selectbox("Choose AI Voice model:", voiceType)
+    #st.button("START", on_click=startVid())
+    #st.button("STOP", on_click=stopVid())
+    #st.button("PLAY", on_click=playButton()) 
+    #voice = st.selectbox("Choose AI Voice model:", voiceType)
     st.text("Decoded text will be outputted here:")
-    #TODO fix AI model. Needs alignments from a test video to be generatead then saved into a corresponding folder.
-    video, annotations = load_data(tf.convert_to_tensor(vidFile))     
-    model = load_model()
+    
+    #TODO fix AI model.
+    video = load_data_noAlign(tf.convert_to_tensor(vidFile))
     yhat = model.predict(tf.expand_dims(video, axis=0))
     decoder = tf.keras.backend.ctc_decode(yhat, [75], greedy=True)[0][0].numpy()
-    st.text(decoder)
+    #st.text(decoder)
 
     # Convert prediction to text
     converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
