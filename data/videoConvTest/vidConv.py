@@ -1,6 +1,10 @@
 from converter import Converter
+"""
+Program that will take a video filename input and convert this video from an .mp4 into an .mpg so that the main GTAV program can run predictions on it.
+"""
 
 def main():
+	#converter object
 	conv = Converter()
 	fName = input("Input video filename to convert:\n")
 	info = conv.probe("\\wsl$\\Ubuntu-22.04\\home\\m243354\\gtav-lipnet\\data\\videoConvTest")
