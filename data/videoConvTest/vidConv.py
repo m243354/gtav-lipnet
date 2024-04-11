@@ -9,9 +9,9 @@ def main():
 	fName = input("Input video filename to convert:\n")
 	info = conv.probe("\\wsl$\\Ubuntu-22.04\\home\\m243354\\gtav-lipnet\\data\\videoConvTest")
 
-	PATH = 'C:/Users/.../'
+	#PATH = '\\wsl$/Ubuntu-22.04/home/m243354/gtav-lipnet/data/videoConvTest'
 
-	convert = conv.convert(PATH +'Demo.mp4', PATH + 'Demo.mpg', {
+	convert = conv.convert(fName + '.mp4', fName + '.mpg', {
 	    'format': 'mp4',
 	    'audio': {
 	        'codec': 'aac',

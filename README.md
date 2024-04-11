@@ -31,8 +31,14 @@ To run the script on a video you wish to convert, type python3 vidConv.py. The p
 ```streamlit run gtav.py```
 After running this in ubuntu, you will have an IP address supplied to you. Go to this address and you will be able to interact with the project. At its base level, the project will work with a pre-trained voice model. To get the project to work with your own video input, record a video of max 10 seconds in length and place it in the `gtav-lipnet/data/myVideos` folder. From there, refresh the app and select the filename in the dropdown and see the model produce a lipreading approximation of your video! 
 # Todo(remove before cappy day)
+- TODO: Make video conversion from mp4 to mpg
+- TODO: Crop video into the required size for the program
+- TODO: Fix barkAI installation on my laptop so I get sound output
+
+### Unnecessary but nice todo
 - TODO: Make a script to grab the IP and send the browser to it automatically.
 - TODO: Windows functionality stuff. All code is in Ubuntu rn.
 - TODO: Make website look nicer
 - TODO: Ensure smooth file conventions so the user can navigate nicely. Put READMEs in each file folder to explain its purpose
 - TODO: Write comments in ALL code for ALL functions and ALL features
+- TODO: Live Video Capture and conver

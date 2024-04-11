@@ -13,8 +13,8 @@ from modelutil import load_model
 #take input video and run model on it
 #after model is complete, send output to barkAi prg
 #bark program optimizations for low RAM 
-#os.environ["SUNO_OFFLOAD_CPU"] = "True"
-#os.environ["SUNO_USE_SMALL_MODELS"] = "True"
+os.environ["SUNO_OFFLOAD_CPU"] = "True"
+os.environ["SUNO_USE_SMALL_MODELS"] = "True"
 model = load_model()
 
 
@@ -50,26 +50,37 @@ st.link_button("GTAV Github Repository", "https://github.com/m243354/gtav-lipnet
 # Generate two columns 
 vidFile = 'video1.mp4'
 vidFile = 'bbal8p.mpg'
+#todo find directory name and fix this nonsense
+#dirname = os.path.dirname()
 col1, col2 = st.columns(2)
 with col1:     
-    st.info('INPUT VIDEO BELOW')
+    #st.info('INPUT VIDEO BELOW')
+
     #file_path = os.path.join('..','data','s1', selected_video) TODO make live camera frames
     #os.system(f'ffmpeg -i {file_path} -vcodec libx264 test_video.mp4 -y')
+    #generate a list of all the files within myVideos
+    videoList = os.listdir(os.path.join('..', 'data', 'myVideos'))
+    selected_video = st.selectbox('Choose video from myVideos directory:', videoList)    
+    #vidPath = videoList+selected_video
+    
+    st.text(selected_video)
 
     # Video display
-    video = open(vidFile, 'rb') 
-    video_bytes = video.read() 
-    st.video(video_bytes)
+    displayVP = os.path.join('..','data','myVideos',selected_video)
+    #video = open(displayVP, 'rb') 
+    #video_bytes = video.read() 
+    st.text(displayVP)
+    st.video(selected_video)
     #st.image("usna.png")
 
 with col2:
     #st.button("START", on_click=startVid())
     #st.button("STOP", on_click=stopVid())
     #st.button("PLAY", on_click=playButton()) 
-    #voice = st.selectbox("Choose AI Voice model:", voiceType)
+    voice = st.selectbox("Choose AI Voice model:", voiceType)
     st.text("Decoded text will be outputted here:")
     
-    video = load_data_noAlign(tf.convert_to_tensor(vidFile))
+    video = load_data_noAlign(tf.convert_to_tensor(selected_video))
     yhat = model.predict(tf.expand_dims(video, axis=0))
     decoder = tf.keras.backend.ctc_decode(yhat, [75], greedy=True)[0][0].numpy()
 
@@ -78,5 +89,6 @@ with col2:
     st.text(converted_prediction)
     #converted prediction is text to be sent to the barkAI application. Uncomment this line below to hear the results of the prediction in voice mode
     #audio_process(converted_prediction, voice)
-    st.image("goat.png", caption="Throat Goats", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+    
+st.image("goat.png", caption="Throat Goats", width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
     
