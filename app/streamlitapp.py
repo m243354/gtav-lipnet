@@ -60,33 +60,39 @@ with col1:
     #os.system(f'ffmpeg -i {file_path} -vcodec libx264 test_video.mp4 -y')
     #generate a list of all the files within myVideos
     videoList = os.listdir(os.path.join('..', 'data', 'myVideos'))
+    videoList = os.listdir(os.path.join('..', 'data','s3','s3')) #s3 mod
     selected_video = st.selectbox('Choose video from myVideos directory:', videoList)    
     #vidPath = videoList+selected_video
     
-    st.text(selected_video)
+    #st.text(selected_video)
 
     # Video display
     displayVP = os.path.join('..','data','myVideos',selected_video)
+    displayVP = os.path.join('..', 'data','s3','s3', selected_video)
     #video = open(displayVP, 'rb') 
     #video_bytes = video.read() 
-    st.text(displayVP)
-    st.video(selected_video)
-    #st.image("usna.png")
+    #st.text(displayVP)
+    #st.video(selected_video)
+    st.image("blayne.PNG")
 
 with col2:
     #st.button("START", on_click=startVid())
     #st.button("STOP", on_click=stopVid())
     #st.button("PLAY", on_click=playButton()) 
+
+
     voice = st.selectbox("Choose AI Voice model:", voiceType)
     st.text("Decoded text will be outputted here:")
-    
+
+    #
     video = load_data_noAlign(tf.convert_to_tensor(selected_video))
     yhat = model.predict(tf.expand_dims(video, axis=0))
     decoder = tf.keras.backend.ctc_decode(yhat, [75], greedy=True)[0][0].numpy()
-
     # Convert prediction to text
     converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
+    #converted_prediction = "Text output for video here."
     st.text(converted_prediction)
+
     #converted prediction is text to be sent to the barkAI application. Uncomment this line below to hear the results of the prediction in voice mode
     #audio_process(converted_prediction, voice)
     
