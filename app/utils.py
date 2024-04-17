@@ -17,12 +17,18 @@ def load_video(path:str) -> List[float]:
     #Take an input video and return a list of tensor data from the video
     cap = cv2.VideoCapture(path)
     frames = []
+    missing_frames = []
     for _ in range(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))): 
         ret, frame = cap.read()
+        if frame is None:
+            #stackOF solution to skip reading frames that openCV cannot read from
+            missing_frames.append(frame)
+            continue
+
         frame = tf.image.rgb_to_grayscale(frame)
         frames.append(frame[190:236,80:220,:])
+
     cap.release()
-    
     mean = tf.math.reduce_mean(frames)
     std = tf.math.reduce_std(tf.cast(frames, tf.float32))
     return tf.cast((frames - mean), tf.float32) / std
@@ -57,6 +63,7 @@ def load_data_noAlign(path:str):
     file_name = path.split('/')[-1].split('.')[0]
     # File name splitting for windows
     #file_name = path.split('\\')[-1].split('.')[0]
+    #video path is partially hard coded for the 
     video_path = os.path.join('..','data','myVideos',f'{file_name}.mpg')
     frames = load_video(video_path) 
     

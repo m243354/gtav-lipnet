@@ -5,6 +5,7 @@ import imageio
 import tensorflow as tf 
 from utils import load_data, num_to_char, load_data_noAlign
 from modelutil import load_model
+import ffmpeg
 
 #broken import -_-
 #from barkPrg import audio_process
@@ -61,6 +62,7 @@ with col1:
     #generate a list of all the files within myVideos
     videoList = os.listdir(os.path.join('..', 'data', 'myVideos'))
     videoList = os.listdir(os.path.join('..', 'data','s3','s3')) #s3 mod
+    videoList = os.listdir(os.path.join('..', 'data','s1')) #s1 mod
     selected_video = st.selectbox('Choose video from myVideos directory:', videoList)    
     #vidPath = videoList+selected_video
     
@@ -69,6 +71,7 @@ with col1:
     # Video display
     displayVP = os.path.join('..','data','myVideos',selected_video)
     displayVP = os.path.join('..', 'data','s3','s3', selected_video)
+    displayVP = os.path.join('..', 'data','s1') #s1 mod
     #video = open(displayVP, 'rb') 
     #video_bytes = video.read() 
     #st.text(displayVP)
